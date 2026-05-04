@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico">
+    <title>Shapes</title>
+    <style>
+      #preloader {
+        position: fixed;
+        inset: 0; 
+        background-color: #000;
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; 
+        transition: opacity 0.35s ease-in-out;
+      }
+      #preloader svg {
+        width: 64px;
+        height: 64px;
+      }
+    </style>
+<link rel="icon" href="favicon.ico"><script defer src="bundle.js"></script></head>
+<body>
+    <div id="preloader">
+        <!-- Paste your Logo SVG here -->
+        <svg width="60" height="60" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12C4 16.4183 7.58172 20 12 20V12H28C28 7.58172 24.4183 4 20 4H12C7.58172 4 4 7.58172 4 12Z" fill="white"/>
+          <path d="M28 20C28 15.5817 24.4183 12 20 12V20H4C4 24.4183 7.58172 28 12 28H20C24.4183 28 28 24.4183 28 20Z" fill="white"/>
+        </svg>
+    </div>
+
+    <!-- Main app structure (header, filters will be prepended here by JS) -->
+    <div id="grid"></div>
+</body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const copyButtons = document.querySelectorAll('.copy-btn');
+      copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const address = this.getAttribute('data-address');
+          navigator.clipboard.writeText(address).then(() => {
+            this.classList.add('copied');
+            setTimeout(() => {
+              this.classList.remove('copied');
+            }, 1000);
+          });
+        });
+      });
+    });
+  </script>
+</html>
